@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <script>
+    const userInput = prompt("Qual é o valor inicial da contagem?")
+    let count = Number(userInput)
+    let interval
+
+    function start() {
+      const html = document.querySelector('#root')
+
+      const conunterElement = document.createElement('div')
+      conunterElement.classList.add('count')
+      conunterElement.innerText = `${count}`
+
+      html.appendChild(conunterElement)
+      
+
+      interval = setInterval(countDown, 1000)
+    }
+
+    function countDown() {
+      const conunterElement = document.querySelector('.count')
+      
+      count -= 1
+      if (count <= 0) {
+        clearInterval(interval)
+
+        conunterElement.innerText = `Lançar! 🔥🚀`
+        return
+      }
+
+      conunterElement.innerText = `${count}`
+    }
+
+
+    addEventListener('load', start)
+  </script>
+  
+  <title>Execicio 2 😒</title>
+</head>
+<body>
+  <div id="root"></div>
+</body>
+</html>

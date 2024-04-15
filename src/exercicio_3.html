@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <script>
+    function start() {
+      const totalMonths = 1
+      const status = { ganhos: 0, despesas: 0 }
+
+      for (let index = 0; index < totalMonths; index++) {
+        status.ganhos += Number(prompt(`Escreva o lucro do ${index + 1}º mês.`))
+        status.despesas += Number(prompt(`Escreva o prejuízo do ${index + 1}º mês.`))
+      } 
+
+      const html = document.querySelector("#root")
+      for (const finance in status) {
+        const financeElement = document.createElement("div")
+        const financeStatus = toCurrency(status[finance])
+
+        financeElement.innerText = `${finance}: ${financeStatus}`
+        html.appendChild(financeElement)
+      }
+
+      console.log(status)
+
+      if (status.ganhos > status.despesas) {
+        const textElement = document.createElement("div")
+        textElement.innerText = `Voê saiu no lucro 🤑`
+        html.appendChild(textElement)
+      }
+
+      if (status.ganhos < status.despesas) {
+        const textElement = document.createElement("div")
+        textElement.innerText = `Voê saiu no Preju 😢`
+        html.appendChild(textElement)
+      }
+    }
+
+    function toCurrency(value) {
+      const money = Number(value)
+
+      return money.toLocaleString('pt-br', { style: 'currency', currency: 'BRL' })
+    } 
+
+    addEventListener('load', start)
+  </script>
+  
+  <title>Execicio 3 😒</title>
+</head>
+<body>
+  <div id="root"></div>
+</body>
+</html>
